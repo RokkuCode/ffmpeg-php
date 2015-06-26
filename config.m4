@@ -56,6 +56,14 @@ dnl      PHP_ADD_INCLUDE($i/include/libavdevice/)
     if test -f $i/lib/libavcodec.dylib; then
       FFMPEG_LIBDIR=$i/lib
     fi
+    dnl Debian-amd64 (Holger Schramm)
+    if test -f $i/lib/x86_64-linux-gnu/libavcodec.so; then
+      FFMPEG_LIBDIR=$i/x86_64-linux-gnu
+    fi
+    dnl Debian-i386
+    if test -f $i/lib/i386-linux-gnu/libavcodec.so; then
+      FFMPEG_LIBDIR=$i/x86_64-linux-gnu
+    fi
     done
 
     PHP_ADD_LIBRARY_WITH_PATH(avcodec, $FFMPEG_LIBDIR, FFMPEG_SHARED_LIBADD)
